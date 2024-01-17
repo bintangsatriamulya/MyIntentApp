@@ -2,9 +2,11 @@ package com.example.myintentapp
 
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.ImageView
 import androidx.activity.ComponentActivity
 
 
@@ -19,6 +21,16 @@ class MainActivity : ComponentActivity(), View.OnClickListener {
 
         val btnMoveWithDataActivity: Button = findViewById(R.id.btn_move_activity_data)
         btnMoveWithDataActivity.setOnClickListener(this)
+
+        val btnDialPhone: Button = findViewById(R.id.btn_dial_number)
+        btnDialPhone.setOnClickListener(this)
+
+        val btnBioDataActivity: Button = findViewById(R.id.btn_biodata_activity)
+        btnBioDataActivity.setOnClickListener(this)
+
+        val imageViewBioData: ImageView = findViewById(R.id.imageView)
+
+        imageViewBioData.setImageResource(R.drawable.test)
     }
 
 
@@ -37,6 +49,23 @@ class MainActivity : ComponentActivity(), View.OnClickListener {
 
                     moveViewDataIntent.putExtra(MoveWithDataActivity.EXTRA_AGE,5)
                     startActivity(moveViewDataIntent)
+
+
+                }
+                R.id.btn_dial_number -> {
+                    val phoneNumber = "0895808399100"
+                    val dialPhoneIntent = Intent (Intent.ACTION_DIAL, Uri.parse("tel:$phoneNumber"))
+                    startActivity(dialPhoneIntent)
+                }
+                R.id.btn_biodata_activity ->{
+                    val biodataIntent = Intent(this@MainActivity,MoveWithBiodataActivity::class.java)
+
+
+                    biodataIntent.putExtra(MoveWithBiodataActivity.EXTRA_NAME,"Bintang Satria Mulya Budi")
+                    biodataIntent.putExtra(MoveWithBiodataActivity.EXTRA_AGE,16)
+                    biodataIntent.putExtra(MoveWithBiodataActivity.EXTRA_SCH,"SMK Telkom Malang")
+                    biodataIntent.putExtra(MoveWithBiodataActivity.EXTRA_ADDRE,"Jalan Danau Ranau Sawojajar 2 Mlang")
+                    startActivity(biodataIntent)
 
 
                 }
